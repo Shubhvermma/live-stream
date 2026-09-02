@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap">
+<style>
+  body {
+    background-color: transparent;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    color: #FFFFFF;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .countdown-container {
+    display: flex;
+    gap: 30px;
+    text-align: center;
+  }
+
+  .time-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 90px;
+  }
+
+  .number {
+    font-size: 80px;
+    font-weight: 700;
+    text-shadow: 0px 4px 15px rgba(0, 0, 0, 0.8), 0px 0px 20px rgba(255, 215, 0, 0.6);
+    line-height: 1;
+  }
+
+  .label {
+    font-size: 20px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: 10px;
+    color: #E0E0E0;
+    text-shadow: 0px 2px 5px rgba(0, 0, 0, 0.9);
+  }
+</style>
+</head>
+<body>
+
+<div class="countdown-container">
+  <div class="time-box">
+    <span class="number" id="days">00</span>
+    <span class="label">Days</span>
+  </div>
+  <div class="time-box">
+    <span class="number" id="hours">00</span>
+    <span class="label">Hours</span>
+  </div>
+  <div class="time-box">
+    <span class="number" id="minutes">00</span>
+    <span class="label">Mins</span>
+  </div>
+  <div class="time-box">
+    <span class="number" id="seconds">00</span>
+    <span class="label">Secs</span>
+  </div>
+</div>
+
+<script>
+  var targetDate = new Date("Sep 4, 2026 00:00:00").getTime();
+
+  function updateCountdown() {
+    var now = new Date().getTime();
+    var diff = targetDate - now;
+
+    if (diff < 0) {
+      document.querySelector(".countdown-container").innerHTML = "<h1 style='font-size: 60px;'>HAPPY JANMASHTAMI</h1>";
+      return;
+    }
+
+    var d = Math.floor(diff / (1000 * 60 * 60 * 24));
+    var h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    var s = Math.floor((diff % (1000 * 60)) / 1000);
+
+    document.getElementById("days").innerText = d < 10 ? "0" + d : d;
+    document.getElementById("hours").innerText = h < 10 ? "0" + h : h;
+    document.getElementById("minutes").innerText = m < 10 ? "0" + m : m;
+    document.getElementById("seconds").innerText = s < 10 ? "0" + s : s;
+  }
+
+  setInterval(updateCountdown, 1000);
+  updateCountdown();
+</script>
+
+</body>
+</html>
